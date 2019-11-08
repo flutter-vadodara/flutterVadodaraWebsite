@@ -45,6 +45,7 @@ class _HomePageState extends State<HomePage> {
           getHeaderText(navItemJoin),
         ],
       ),
+      body: getBody(),
     );
   }
 
@@ -81,6 +82,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
+      body: getBody(),
     );
   }
 
@@ -111,6 +113,18 @@ class _HomePageState extends State<HomePage> {
       title: Text(
         navTitle,
         style: appBarTextStyle(),
+      ),
+    );
+  }
+
+  getBody() {
+    return SingleChildScrollView(
+      child: Column(
+        children: <Widget>[
+          //TODO: Dummy Image until Assets are ready
+          Image.network("https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRTBTXXUNX7TJjswHe-gFWaF4rHozXMf5iGieYKVVmRJ_5ShktA",
+          width: MediaQuery.of(context).size.width,height: MediaQuery.of(context).size.height,fit: BoxFit.fill,),
+        ],
       ),
     );
   }
