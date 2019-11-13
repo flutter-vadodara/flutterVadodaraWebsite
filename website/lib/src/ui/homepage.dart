@@ -18,30 +18,32 @@ class _HomePageState extends State<HomePage> {
 
   getLargeScreen() {
     return Scaffold(
+      // TODO: Increase AppBar Height
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.blue[800],
         leading: getImage(),
-        elevation: 1,
+        elevation: 0,
+
         actions: <Widget>[
-          SizedBox(
-            width: MediaQuery.of(context).size.width * 0.04,
-          ),
-          getHeaderText(homePageTitle),
+          // Use different Widget?
+          // SizedBox(
+          //   width: MediaQuery.of(context).size.width * 0.04,
+          // ),
           Container(
             width: MediaQuery.of(context).size.width * 0.20,
           ),
           getHeaderText(navItemAbout),
-          SizedBox(
-            width: MediaQuery.of(context).size.width * 0.01,
-          ),
+          // SizedBox(
+          //   width: MediaQuery.of(context).size.width * 0.01,
+          // ),
           getHeaderText(navItemEvent),
-          SizedBox(
-            width: MediaQuery.of(context).size.width * 0.01,
-          ),
+          // SizedBox(
+          //   width: MediaQuery.of(context).size.width * 0.01,
+          // ),
           getHeaderText(navItemContact),
-          SizedBox(
-            width: MediaQuery.of(context).size.width * 0.01,
-          ),
+          // SizedBox(
+          //   width: MediaQuery.of(context).size.width * 0.01,
+          // ),
           getHeaderText(navItemJoin),
         ],
       ),
@@ -52,14 +54,10 @@ class _HomePageState extends State<HomePage> {
   getSmallScreen() {
     return Scaffold(
       appBar: AppBar(
-        elevation: 1.0,
-        iconTheme: IconThemeData(color: Colors.grey),
-        backgroundColor: Colors.white,
+        elevation: 0.0,
+        iconTheme: IconThemeData(color: Colors.white),
+        backgroundColor: Colors.blue[800],
         leading: getImage(),
-        title: Text(
-          homePageTitle,
-          style: appBarTextStyle(),
-        ),
       ),
       endDrawer: Drawer(
         child: SingleChildScrollView(
@@ -87,18 +85,25 @@ class _HomePageState extends State<HomePage> {
   }
 
   appBarTextStyle() {
-    return TextStyle(color: Colors.blueAccent);
+    return TextStyle(
+      color: Colors.white,
+      fontSize: 24,
+
+      );
   }
 
   getImage() {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-      child: Image.network(
-          "https://miro.medium.com/max/1000/1*ilC2Aqp5sZd1wi0CopD1Hw.png"),
+      child: Image.asset(
+          "assets/images/logo.png",
+          // TODO: Increase Height.
+          height: 24,),
     );
   }
 
   getHeaderText(String navTitle, [var function]) {
+    //TODO: Use different widget
     return Expanded(
       child: getHeaderListTile(navTitle, function),
     );
@@ -118,14 +123,28 @@ class _HomePageState extends State<HomePage> {
   }
 
   getBody() {
-    return SingleChildScrollView(
-      child: Column(
-        children: <Widget>[
-          //TODO: Dummy Image until Assets are ready
-          Image.network("https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRTBTXXUNX7TJjswHe-gFWaF4rHozXMf5iGieYKVVmRJ_5ShktA",
-          width: MediaQuery.of(context).size.width,height: MediaQuery.of(context).size.height,fit: BoxFit.fill,),
-        ],
-      ),
-    );
+    return Stack(
+            fit: StackFit.expand,
+            children: <Widget>[
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  Expanded(child: Stack(
+                    fit: StackFit.expand,
+                    children: <Widget>[
+                      Image.asset("assets/images/background.jpg",
+                      fit: BoxFit.cover,
+                      alignment: Alignment.center,),
+                      Container(
+                        color: Color.fromRGBO(0, 105, 233, 0.8),
+                      )
+                    ],
+                  ),
+                  )
+                ],)
+            ],
+          );
   }
 }
